@@ -19,6 +19,28 @@ if (!defined('ABSPATH')) {
 	die;
 }
 
+class basicPlugin
+{
+	function activate()
+	{
+		echo "activate";
+	}
+	function deactivate()
+	{
+
+	}
+	function uninstall()
+	{
+
+	}
+}
+if (class_exists('basicPlugin')) {
+	$basicPlugin = new basicPlugin;
+}
+
+register_activation_hook(__FILE__, array('basicPlugin', 'activate'));
+
+register_deactivation_hook(__FILE__, array('basicPlugin', 'deactivate'));
 // if (!function_exists('test')) {
 // 	echo 'Not allowed';
 // 	exit();
