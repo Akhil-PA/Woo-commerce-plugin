@@ -23,7 +23,7 @@ class basicPlugin
 {
 	function activate()
 	{
-		echo "activate";
+		// echo "activate";
 	}
 	function deactivate()
 	{
