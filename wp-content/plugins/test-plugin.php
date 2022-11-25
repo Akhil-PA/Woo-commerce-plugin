@@ -15,34 +15,38 @@
  * Text Domain: rvps
  */
 
-if (!function_exists('test')) {
-	echo 'Not allowed';
-	exit();
+if (!defined('ABSPATH')) {
+	die;
 }
-//check wp version
-if (version_compare(get_bloginfo('version'), '5.0', '<')) {
-	$message = "Required WordPress version 5.0 or above";
-	die($message);
-}
-//constants
-define('TEST_PATH', plugin_dir_path(__FILE__));
 
-define('TEST_URI', plugin_dir_url(__FILE__));
-echo TEST_PATH;
-echo '<br>';
-echo TEST_URI;
+// if (!function_exists('test')) {
+// 	echo 'Not allowed';
+// 	exit();
+// }
+// //check wp version
+// if (version_compare(get_bloginfo('version'), '5.0', '<')) {
+// 	$message = "Required WordPress version 5.0 or above";
+// 	die($message);
+// }
+// //constants
+// define('TEST_PATH', plugin_dir_path(__FILE__));
 
-//check if woocommerce is active or Not
+// define('TEST_URI', plugin_dir_url(__FILE__));
+// echo TEST_PATH;
+// echo '<br>';
+// echo TEST_URI;
 
-if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
-	if (class_exists('TEST_core')) {
-		class TEST_core
-		{
-			public function __construct()
-			{
-				// code to execute
-			}
-		}
-		$TEST_core = new TEST_core();
-	}
-}
+// //check if woocommerce is active or Not
+
+// if (in_array('woocommerce/woocommerce.php', apply_filters('active_plugins', get_option('active_plugins')))) {
+// 	if (class_exists('TEST_core')) {
+// 		class TEST_core
+// 		{
+// 			public function __construct()
+// 			{
+// 				// code to execute
+// 			}
+// 		}
+// 		$TEST_core = new TEST_core();
+// 	}
+// }
