@@ -21,26 +21,43 @@ if (!defined('ABSPATH')) {
 
 class basicPlugin
 {
+	function __construct()
+	{
+		add_action('init', array($this, 'custom_post_type'));
+	}
 	function activate()
 	{
+		$this->custom_post_type();
+		flush_rewrite_rules();
 		// echo "activate";
 	}
 	function deactivate()
 	{
-
+		flush_rewrite_rules();
 	}
-	function uninstall()
-	{
+	// function uninstall()
+	// {
 
+	// }
+	function enqueue()
+	{
+		wp_enqueue_style('mypluginstyle', plugins_url('/assets/mystyle.css', __FILE__));
+	}
+	function custom_post_type()
+	{
+		register_post_type('book', ['public' => true, 'label' => 'Books']);
 	}
 }
 if (class_exists('basicPlugin')) {
 	$basicPlugin = new basicPlugin;
 }
 
-register_activation_hook(__FILE__, array('basicPlugin', 'activate'));
+register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
 
-register_deactivation_hook(__FILE__, array('basicPlugin', 'deactivate'));
+register_deactivation_hook(__FILE__, array($basicPlugin, 'deactivate'));
+
+
+
 // if (!function_exists('test')) {
 // 	echo 'Not allowed';
 // 	exit();
