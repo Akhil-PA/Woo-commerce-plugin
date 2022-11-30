@@ -24,6 +24,11 @@ class basicPlugin
 	function __construct()
 	{
 		add_action('init', array($this, 'custom_post_type'));
+		$this->print_stuff();
+	}
+	function register()
+	{
+		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 	}
 	function activate()
 	{
@@ -34,6 +39,10 @@ class basicPlugin
 	function deactivate()
 	{
 		flush_rewrite_rules();
+	}
+	protected function print_stuff()
+	{
+		var_dump(['test']);
 	}
 	// function uninstall()
 	// {
@@ -50,6 +59,8 @@ class basicPlugin
 }
 if (class_exists('basicPlugin')) {
 	$basicPlugin = new basicPlugin;
+	$basicPlugin->register();
+	// $basicPlugin->custom_post_type();
 }
 
 register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
