@@ -1,6 +1,6 @@
 <?php
 /**
- * @package Hello_Dolly
+ * @package basicPlugin
  * @version 1.7.2
  */
 
@@ -30,12 +30,7 @@ class basicPlugin
 	{
 		add_action('admin_enqueue_scripts', array($this, 'enqueue'));
 	}
-	function activate()
-	{
-		$this->custom_post_type();
-		flush_rewrite_rules();
-		// echo "activate";
-	}
+
 	function deactivate()
 	{
 		flush_rewrite_rules();
@@ -62,10 +57,10 @@ if (class_exists('basicPlugin')) {
 	$basicPlugin->register();
 	// $basicPlugin->custom_post_type();
 }
-
-register_activation_hook(__FILE__, array($basicPlugin, 'activate'));
-
-register_deactivation_hook(__FILE__, array($basicPlugin, 'deactivate'));
+require_once plugin_dir_path(__FILE__) . 'inc/basic_Plugin_activate.php';
+register_activation_hook(__FILE__, array('basicPluginActivate', 'activate'));
+require_once plugin_dir_path(__FILE__) . 'inc/basic_Plugin_deactivate.php';
+register_deactivation_hook(__FILE__, array('basicPluginDeactivate', 'deactivate'));
 
 
 
