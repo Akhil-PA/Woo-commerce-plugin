@@ -24,7 +24,7 @@ class basicPlugin
 	function __construct()
 	{
 		add_action('init', array($this, 'custom_post_type'));
-		$this->print_stuff();
+		// $this->print_stuff();
 	}
 	function register()
 	{
@@ -35,10 +35,10 @@ class basicPlugin
 	{
 		flush_rewrite_rules();
 	}
-	protected function print_stuff()
-	{
-		var_dump(['test']);
-	}
+	// protected function print_stuff()
+	// {
+	// 	var_dump(['test']);
+	// }
 	// function uninstall()
 	// {
 
